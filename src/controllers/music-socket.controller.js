@@ -3,9 +3,9 @@ import { timeStampValidator } from "../utills/validators.utills.js";
 const musicSocketConnector = (socket, musicSocketIO) => {
   socket.on("joinRoom", (data) => {
     if (typeof data.roomID !== "string") {
-        throw new Error("Room ID must be of type String");
+      throw new Error("Room ID must be of type String");
     }
-    console.log(`User with ${socket.id} joined room ${data.roomID}`)
+    console.log(`User with ${socket.id} joined room ${data.roomID}`);
     socket.join(data.roomID);
   });
   socket.on("sendMessage", (data) => {
@@ -23,9 +23,9 @@ const musicSocketConnector = (socket, musicSocketIO) => {
       console.log(`Error : ${error.message}`);
     }
   });
-  socket.on('disconnect', ()=>{
-    console.log(`User with Socket ID: ${socket.id} disconnected`)
-  })
+  socket.on("disconnect", () => {
+    console.log(`User with Socket ID: ${socket.id} disconnected`);
+  });
 };
 
-export {musicSocketConnector};
+export { musicSocketConnector };

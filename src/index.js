@@ -3,15 +3,17 @@ import http from "http";
 import { Server } from "socket.io";
 import { chatsSocketConnector } from "./controllers/chat-socket.controller.js";
 import { musicSocketConnector } from "./controllers/music-socket.controller.js";
-import { limiter } from "./utills/rate-limiter.utills.js";
+import redisLimiter from "./utills/rate-limiter.utills.js";
 
 const app = express();
-app.use(limiter);
+app.use(redisLimiter);
+app.use(express.json({ limit: "14kb" }));
+
 const server = http.createServer(app);
 const io = new Server(server);
 
 app.get("/", (req, res) => {
-  res.send({message: "App is running"});
+  res.send({ message: "App is running" });
 });
 
 const chatsSocketIO = io.of("/api/v1/chats");

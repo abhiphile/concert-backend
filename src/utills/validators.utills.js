@@ -5,4 +5,4 @@ const timeStampValidator = (timeStamp) => {
     return false;
   }
 };
-export {timeStampValidator};
+export { timeStampValidator };
